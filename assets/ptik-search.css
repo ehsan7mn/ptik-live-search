@@ -1,0 +1,569 @@
+.ptik-group-title {
+	font-size: 1.2rem;
+	margin: 0 10px;
+	padding: 10px 0;
+	border-bottom: 1px solid var(--gray1);
+}
+
+.search_result li a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+/* عکس + عنوان با هم یک بلوک می‌مانند تا قیمت/تعداد وسط آن‌ها نیفتد */
+.search_result li a .ptik-info {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.search_result li a .ptik-info img {
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+	flex-shrink: 0;
+}
+
+.ptik-price,
+.ptik-count {
+	white-space: nowrap;
+}
+
+.ptik-more-wrap {
+	text-align: center;
+	padding: 10px 0;
+}
+
+/* استایل مودال جستجو - قبلاً داخل CSS تم بود، منتقل شد به افزونه تا با انتقال افزونه به سایت دیگر همراه بماند */
+/* start search */
+.search_box .modal-content {
+	background: rgba(0, 0, 0, .9);
+	position: relative;
+}
+.search_box .close_search {
+	position: absolute;
+	z-index: 9;
+	left: 10px;
+	top: 10px;
+	font-size: 40px;
+	color: var(--bs-danger);
+}
+.close_modal {
+	font-size: 40px;
+	cursor: pointer;
+	color: var(--red1) !important;
+}
+.close_modal.btn-close {
+	background: none;
+	opacity: 1;
+}
+.search_div {
+	margin: 0 auto;
+	width: 700px;
+	max-width: 100%;
+}
+.search_div button img {
+	max-width: 26px;
+}
+.search_div form {
+	position: relative;
+}
+.search_div input {
+	background: 0 0;
+	border: 1px solid var(--text);
+	height: 80px;
+	padding: 0 20px;
+	outline: none;
+	border-radius: 10px;
+	display: block;
+	width: 100%;
+	color: var(--text);
+	background: rgba(255, 255, 255, 1);
+	font-size: 1rem;
+}
+.search_div button {
+	background: 0 0;
+	border: 0;
+	outline: none;
+	position: absolute;
+	top: 52%;
+	transform: translateY(-50%);
+	left: 0;
+	width: 60px;
+	font-size: 1.3rem;
+	color: var(--text);
+}
+.modal.fade .modal-dialog.modal-fullscreen {
+	transform: none !important;
+}
+/* end search */
+
+/* استایل باکس نتایج - منتقل‌شده از تم */
+.search_result ul {
+	padding: 0;
+	margin: 10px 0;
+	border: 1px solid var(--border);
+	border-radius: var(--border-radius);
+}
+.search_result li {
+	list-style: none;
+	margin: 10px;
+}
+.search_result li a {
+	gap: 10px;
+	display: flex;
+	align-items: center;
+}
+.search_result li img {
+	border: 1px solid var(--gray_light);
+	border-radius: 5px;
+	width: 60px;
+	height: 60px;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	-webkit-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+.search_result li:hover img {
+	border-color: var(--primary);
+}
+.loading_search {
+	--uib-size: 35px;
+	--uib-color: black;
+	--uib-speed: 1.5s;
+	--uib-dot-size: calc(var(--uib-size) * 0.4);
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: var(--uib-dot-size);
+	width: var(--uib-size);
+}
+
+.loading_search::before,
+.loading_search::after {
+	content: '';
+	position: absolute;
+	height: var(--uib-dot-size);
+	width: var(--uib-dot-size);
+	border-radius: 50%;
+	background-color: var(--uib-color);
+	flex-shrink: 0;
+	transition: background-color 0.3s ease;
+}
+
+.loading_search::before {
+	animation: orbit var(--uib-speed) linear infinite;
+}
+
+.loading_search::after {
+	animation: orbit var(--uib-speed) linear calc(var(--uib-speed) / -2) infinite;
+}
+
+@keyframes orbit {
+	0% {
+		transform: translateX(calc(var(--uib-size) * 0.25)) scale(0.73684);
+		opacity: 0.65;
+	}
+	5% {
+		transform: translateX(calc(var(--uib-size) * 0.235)) scale(0.684208);
+		opacity: 0.58;
+	}
+	10% {
+		transform: translateX(calc(var(--uib-size) * 0.182)) scale(0.631576);
+		opacity: 0.51;
+	}
+	15% {
+		transform: translateX(calc(var(--uib-size) * 0.129)) scale(0.578944);
+		opacity: 0.44;
+	}
+	20% {
+		transform: translateX(calc(var(--uib-size) * 0.076)) scale(0.526312);
+		opacity: 0.37;
+	}
+	25% {
+		transform: translateX(0%) scale(0.47368);
+		opacity: 0.3;
+	}
+	30% {
+		transform: translateX(calc(var(--uib-size) * -0.076)) scale(0.526312);
+		opacity: 0.37;
+	}
+	35% {
+		transform: translateX(calc(var(--uib-size) * -0.129)) scale(0.578944);
+		opacity: 0.44;
+	}
+	40% {
+		transform: translateX(calc(var(--uib-size) * -0.182)) scale(0.631576);
+		opacity: 0.51;
+	}
+	45% {
+		transform: translateX(calc(var(--uib-size) * -0.235)) scale(0.684208);
+		opacity: 0.58;
+	}
+	50% {
+		transform: translateX(calc(var(--uib-size) * -0.25)) scale(0.73684);
+		opacity: 0.65;
+	}
+	55% {
+		transform: translateX(calc(var(--uib-size) * -0.235)) scale(0.789472);
+		opacity: 0.72;
+	}
+	60% {
+		transform: translateX(calc(var(--uib-size) * -0.182)) scale(0.842104);
+		opacity: 0.79;
+	}
+	65% {
+		transform: translateX(calc(var(--uib-size) * -0.129)) scale(0.894736);
+		opacity: 0.86;
+	}
+	70% {
+		transform: translateX(calc(var(--uib-size) * -0.076)) scale(0.947368);
+		opacity: 0.93;
+	}
+	75% {
+		transform: translateX(0%) scale(1);
+		opacity: 1;
+	}
+	80% {
+		transform: translateX(calc(var(--uib-size) * 0.076)) scale(0.947368);
+		opacity: 0.93;
+	}
+	85% {
+		transform: translateX(calc(var(--uib-size) * 0.129)) scale(0.894736);
+		opacity: 0.86;
+	}
+	90% {
+		transform: translateX(calc(var(--uib-size) * 0.182)) scale(0.842104);
+		opacity: 0.79;
+	}
+	95% {
+		transform: translateX(calc(var(--uib-size) * 0.235)) scale(0.789472);
+		opacity: 0.72;
+	}
+	100% {
+		transform: translateX(calc(var(--uib-size) * 0.25)) scale(0.73684);
+		opacity: 0.65;
+	}
+}
+.search_result {
+	background: #fff;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+/* ===== استایل 7: Minoru (کپی دقیق از tympanus.net، فقط رنگ با var(--primary) جایگزین شد) ===== */
+.ptik-input--minoru {
+	position: relative;
+	display: block;
+	padding: 0.8em;
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	background: #fff;
+	color: var(--primary, #eca29b);
+	font-weight: bold;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	-webkit-appearance: none;
+	box-shadow: 0px 0px 0px 2px transparent;
+	transition: box-shadow 0.3s;
+}
+.ptik-input--minoru:focus {
+	outline: none;
+	box-shadow: 0px 0px 0px 2px var(--primary, #eca29b);
+}
+.ptik-label--minoru {
+	padding: 0;
+	width: 100%;
+	text-align: left;
+	font-size: 0;
+}
+.ptik-label--minoru::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	z-index: -1;
+	width: 100%;
+	height: 4em;
+	box-shadow: 0px 0px 0px 0px;
+	color: var(--primary, #eca29b);
+}
+.ptik-input--minoru:focus + .ptik-label--minoru {
+	pointer-events: none;
+}
+.ptik-input--minoru:focus + .ptik-label--minoru::after {
+	animation: ptik-anim-shadow 0.3s forwards;
+}
+@keyframes ptik-anim-shadow {
+	to {
+		box-shadow: 0px 0px 100px 50px;
+		opacity: 0;
+	}
+}
+.ptik-label-content--minoru {
+	padding: 0.75em 0.15em;
+}
+
+/* ===== استایل 8: Madoka (کپی دقیق از tympanus.net، فقط رنگ با var(--primary) جایگزین شد) ===== */
+.search_bar.ptik-style-madoka {
+	background: none !important;
+}
+.ptik-input-wrap--madoka {
+	margin: 1.1em;
+	position: relative;
+	z-index: 1;
+	display: block;
+	background: none;
+}
+.ptik-input--madoka {
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 0.8em 0.8em 0.8em 2.4em;
+	border: none;
+	border-radius: 0;
+	background: none !important;
+	color: var(--text, #333);
+	font-weight: bold;
+	font-family: inherit;
+	font-size: 1em;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.ptik-input--madoka:focus {
+	outline: none;
+}
+.ptik-label--madoka {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	color: var(--primary, #7A7593);
+	text-align: left;
+	cursor: text;
+}
+.ptik-madoka-icon {
+	position: absolute;
+	top: 50%;
+	left: 0.8em;
+	transform: translateY(-50%);
+	display: flex;
+	pointer-events: none;
+}
+.ptik-graphic--madoka {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	fill: none;
+	transform: scale3d(1, -1, 1);
+	transition: stroke-dashoffset 0.3s;
+	pointer-events: none;
+	stroke: var(--primary, #7A7593);
+	stroke-width: 2px;
+	stroke-dasharray: 962;
+	stroke-dashoffset: 558;
+}
+.ptik-input-wrap--madoka.is-filled .ptik-label--madoka {
+	cursor: default;
+	pointer-events: none;
+}
+.ptik-input-wrap--madoka.is-filled .ptik-graphic--madoka {
+	stroke-dashoffset: 0;
+}
+
+/* ===== ابزارهای مشترک استایل‌ها ===== */
+.ptik-icon-magnifier { width: 18px; height: 18px; flex-shrink: 0; }
+.ptik-circle-btn {
+	width: 44px;
+	height: 44px;
+	flex-shrink: 0;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+/* ===== استایل 2: glass1 (کادر شیشه‌ای + چشم متحرک) ===== */
+.ptik-search--glass1 {
+	direction: rtl;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	background: rgba(255, 255, 255, 0.22);
+	border: 2px solid rgba(255, 255, 255, 0.75);
+	border-radius: 999px;
+	padding: 14px 22px;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+.ptik-search--glass1 .input_search {
+	flex: 1;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	background: transparent !important;
+	-webkit-appearance: none;
+	appearance: none;
+	font-size: 16px;
+}
+.ptik-eyes { color: #4a4a5e; flex-shrink: 0; }
+.ptik-pupil { animation: ptik-eyes-look 5s ease-in-out infinite; }
+@keyframes ptik-eyes-look {
+	0%, 100% { transform: translate(0, 0); }
+	20% { transform: translate(-2px, 0); }
+	40% { transform: translate(0, -1.5px); }
+	60% { transform: translate(2px, 0); }
+	80% { transform: translate(0, 1.5px); }
+}
+
+/* ===== استایل 3: solid-primary (کادر توپر رنگ اصلی قالب) ===== */
+.ptik-search--solid {
+	direction: rtl;
+	display: flex;
+	align-items: center;
+	gap: 0;
+	background: var(--primary, #5fa8e0);
+	border-radius: 999px;
+	padding: 6px;
+}
+.ptik-search--solid .input_search {
+	flex: 1;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	background: transparent !important;
+	padding: 0 16px;
+	font-size: 16px;
+	color: #fff;
+}
+.ptik-search--solid .input_search::placeholder { color: rgba(255, 255, 255, .85); }
+.ptik-search--solid .ptik-circle-btn { background: #fff; }
+.ptik-search--solid .ptik-circle-btn .ptik-icon-magnifier { color: var(--primary, #5fa8e0); }
+
+/* ===== استایل 4: outline-primary (نسخه معکوس استایل 3) ===== */
+.ptik-search--outline {
+	direction: rtl;
+	display: flex;
+	align-items: center;
+	gap: 0;
+	background: #fff;
+	border: 1px solid var(--gray1, #e5e5e5);
+	border-radius: 999px;
+	padding: 6px;
+}
+.ptik-search--outline .input_search {
+	flex: 1;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	background: transparent !important;
+	padding: 0 16px;
+	font-size: 16px;
+	color: #333;
+}
+.ptik-search--outline .input_search::placeholder { color: #999; }
+.ptik-search--outline .ptik-circle-btn { background: var(--primary, #5fa8e0); }
+.ptik-search--outline .ptik-circle-btn .ptik-icon-magnifier { color: #fff; }
+
+/* ===== استایل 5: gradient-spin (حلقه گرادیانت چرخان با ماسک SVG) ===== */
+.ptik-search--gradient {
+	position: relative;
+	height: 58px;
+}
+.ptik-gradient-ring { position: absolute; inset: 0; pointer-events: none; }
+.ptik-search--gradient .input_search {
+	position: relative;
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	background: transparent !important;
+	padding: 0 24px;
+	font-size: 16px;
+	box-sizing: border-box;
+}
+
+/* ===== استایل 6: shine-border (کپی دقیق از app.leonardo.ai) ===== */
+.ptik-search--shine {
+	position: relative;
+	border-radius: 24px;
+	--shine-thickness: 0.0625rem;
+	--shine-inset: 1rem;
+	--shine-speed: 20s;
+	--shine-color: var(--primary, #6e60ee);
+	--shine-gradient: radial-gradient(100% 100% at right, white 0%, white 5%, var(--shine-color) 35%, transparent 70%);
+	--shine-glow-gradient: radial-gradient(circle, white 0%, var(--shine-color) 40%, transparent 70%);
+	background: #000;
+	display: flex;
+	align-items: center;
+	direction: rtl;
+	padding: 0 20px;
+	height: 58px;
+}
+.ptik-search--shine .input_search {
+	flex: 1;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	background: transparent !important;
+	font-size: 16px;
+	color: #eee;
+}
+.ptik-shine-frame {
+	position: absolute;
+	inset: calc((var(--shine-inset) + var(--shine-thickness)) * -1);
+	border-radius: inherit;
+	padding: var(--shine-thickness);
+	pointer-events: none;
+	overflow: hidden;
+	mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0);
+	-webkit-mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0);
+}
+.ptik-shine-light {
+	aspect-ratio: 2 / 1;
+	width: 250px;
+	background: var(--shine-gradient);
+	offset-path: border-box;
+	offset-anchor: 100% 50%;
+	animation: ptik-shine-trail var(--shine-speed) infinite linear;
+	filter: blur(12px);
+	mix-blend-mode: plus-lighter;
+	position: absolute;
+}
+.ptik-shine-light:nth-child(2) { animation-name: ptik-shine-trail-offset; }
+.ptik-shine-glow-orb {
+	inset: calc((var(--shine-inset) + var(--shine-thickness)) * -1);
+	width: calc(100% + ((var(--shine-inset) + var(--shine-thickness)) * 2));
+	height: calc(100% + ((var(--shine-inset) + var(--shine-thickness)) * 2));
+	border-radius: inherit;
+	pointer-events: none;
+	mix-blend-mode: plus-lighter;
+	position: absolute;
+}
+.ptik-shine-glow-orb::before {
+	content: "";
+	aspect-ratio: 2 / 1;
+	background: var(--shine-glow-gradient);
+	offset-path: border-box;
+	offset-anchor: 60% 50%;
+	width: 60px;
+	animation: ptik-shine-trail var(--shine-speed) infinite linear;
+	filter: blur(30px);
+	opacity: 0.7;
+	mix-blend-mode: plus-lighter;
+	position: absolute;
+}
+.ptik-shine-glow-orb:nth-child(2)::before { animation-name: ptik-shine-trail-offset; }
+@keyframes ptik-shine-trail { 0% { offset-distance: 0%; } 100% { offset-distance: 100%; } }
+@keyframes ptik-shine-trail-offset { 0% { offset-distance: 50%; } 100% { offset-distance: 150%; } }
