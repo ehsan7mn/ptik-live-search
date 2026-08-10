@@ -3,7 +3,7 @@
  * Plugin Name: جستجوی زنده
  * Plugin URI: https://persiantik.net
  * Description: جستجوی زنده (AJAX) بین نوشته‌ها، برگه‌ها، محصولات و تاکسونومی‌های سایت با نمایش نتایج گروه‌بندی‌شده بر اساس نوع محتوا. با شورتکد [ptik_search] در هرجای سایت قابل استفاده است.
- * Version: 1.2.7
+ * Version: 1.2.8
  * Author: امیراحسان مهدیزاده
  * Author URI: https://persiantik.net
  * Text Domain: ptik-live-search
@@ -156,8 +156,8 @@ function ptik_render_settings_page() {
 
 add_action( 'wp_enqueue_scripts', 'ptik_register_assets' );
 function ptik_register_assets() {
-	wp_enqueue_style( 'ptik-search-css', PTIK_PLUGIN_URL . 'assets/ptik-search.css', array(), '1.2.7' );
-	wp_enqueue_script( 'ptik-search-js', PTIK_PLUGIN_URL . 'assets/ptik-search.js', array(), '1.2.7', true );
+	wp_enqueue_style( 'ptik-search-css', PTIK_PLUGIN_URL . 'assets/ptik-search.css', array(), '1.2.8' );
+	wp_enqueue_script( 'ptik-search-js', PTIK_PLUGIN_URL . 'assets/ptik-search.js', array(), '1.2.8', true );
 	wp_localize_script(
 		'ptik-search-js',
 		'ptikSearchAjax',

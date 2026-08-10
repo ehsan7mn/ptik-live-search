@@ -115,7 +115,10 @@
 		}
 		svg.setAttribute( 'viewBox', '0 0 ' + w + ' ' + h );
 		path.setAttribute( 'd', 'm0,0l' + w + ',0l0,' + h + 'l-' + w + ',0l0,-' + h + 'z' );
-		path.setAttribute( 'pathLength', '962' );
+		// محیط واقعی مستطیل، و مقدار offset حالت استراحت طوری که دقیقاً یک ضلع افقی دیده شود
+		var perimeter = 2 * ( w + h );
+		svg.style.setProperty( '--ptik-madoka-perimeter', perimeter );
+		svg.style.setProperty( '--ptik-madoka-rest', perimeter - w );
 	}
 
 	function syncAll() {

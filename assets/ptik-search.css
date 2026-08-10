@@ -310,10 +310,11 @@
 	background: none !important;
 }
 .ptik-input-wrap--madoka {
-	margin: 1.1em;
+	margin: 1.1em auto;
 	position: relative;
 	z-index: 1;
 	display: block;
+	max-width: 700px;
 	background: none;
 }
 .ptik-input--madoka {
@@ -366,8 +367,8 @@
 	pointer-events: none;
 	stroke: var(--primary, #7A7593);
 	stroke-width: 2px;
-	stroke-dasharray: 962;
-	stroke-dashoffset: 558;
+	stroke-dasharray: var( --ptik-madoka-perimeter, 962 );
+	stroke-dashoffset: var( --ptik-madoka-rest, 558 );
 }
 .ptik-input-wrap--madoka.is-filled .ptik-label--madoka {
 	cursor: default;
