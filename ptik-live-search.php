@@ -3,7 +3,7 @@
  * Plugin Name: جستجوی زنده
  * Plugin URI: https://persiantik.net
  * Description: جستجوی زنده (AJAX) بین نوشته‌ها، برگه‌ها، محصولات و تاکسونومی‌های سایت با نمایش نتایج گروه‌بندی‌شده بر اساس نوع محتوا. با شورتکد [ptik_search] در هرجای سایت قابل استفاده است.
- * Version: 1.4.0
+ * Version: 1.4.1
  * Author: امیراحسان مهدیزاده
  * Author URI: https://persiantik.net
  * Text Domain: ptik-live-search
@@ -156,8 +156,8 @@ function ptik_render_settings_page() {
 
 add_action( 'wp_enqueue_scripts', 'ptik_register_assets' );
 function ptik_register_assets() {
-	wp_enqueue_style( 'ptik-search-css', PTIK_PLUGIN_URL . 'assets/ptik-search.css', array(), '1.4.0' );
-	wp_enqueue_script( 'ptik-search-js', PTIK_PLUGIN_URL . 'assets/ptik-search.js', array(), '1.4.0', true );
+	wp_enqueue_style( 'ptik-search-css', PTIK_PLUGIN_URL . 'assets/ptik-search.css', array(), '1.4.1' );
+	wp_enqueue_script( 'ptik-search-js', PTIK_PLUGIN_URL . 'assets/ptik-search.js', array(), '1.4.1', true );
 	wp_localize_script(
 		'ptik-search-js',
 		'ptikSearchAjax',
@@ -188,6 +188,8 @@ function ptik_search_func( $atts ) {
 			'depth'       => '0',
 			'absolute'    => 'false',
 			'style'       => 'default',
+			'max_width'   => '700',
+			'max_height'  => '400',
 		),
 		$atts,
 		'ptik_search'
@@ -206,6 +208,11 @@ function ptik_search_func( $atts ) {
 
 	$wrapper_class = 'search_bar ptik-style-' . $style . ( $is_absolute ? ' position-relative' : '' );
 	$result_class  = 'search_result' . ( $is_absolute ? ' position-absolute w-100' : '' );
+
+	// ابعاد باکس نتایج؛ اگر مقدار عددی خالی داده شود، از پیش‌فرض استفاده می‌شود
+	$max_width  = '' === trim( $atts['max_width'] ) ? 700 : max( 1, intval( $atts['max_width'] ) );
+	$max_height = '' === trim( $atts['max_height'] ) ? 400 : max( 1, intval( $atts['max_height'] ) );
+	$result_style = 'display:none;max-width:' . $max_width . 'px;max-height:' . $max_height . 'px;overflow-y:auto;';
 
 	// آیکون ذره‌بین ساده، در بیشتر استایل‌ها استفاده می‌شود
 	$magnifier = '<svg class="ptik-icon-magnifier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.2" y2="16.2"/></svg>';
@@ -282,7 +289,7 @@ function ptik_search_func( $atts ) {
 	}
 
 	$html .= '</form>';
-	$html .= '<div class="' . esc_attr( $result_class ) . '" style="display:none;"><ul><li><div class="loading_search"></div></li></ul></div>';
+	$html .= '<div class="' . esc_attr( $result_class ) . '" style="' . esc_attr( $result_style ) . '"><ul><li><div class="loading_search"></div></li></ul></div>';
 	$html .= '</div>';
 
 	return $html;
