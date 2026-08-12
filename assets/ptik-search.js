@@ -138,3 +138,69 @@
 		resizeTimer = setTimeout( syncAll, 150 );
 	} );
 })();
+
+/* هم‌اندازه کردن حلقه‌ی گرادیانت با ابعاد واقعی کادر (استایل gradient-spin).
+ * viewBox ثابت 380x58 با preserveAspectRatio="none" روی کادری با عرض متفاوت کشیده می‌شود
+ * و باعث می‌شود گوشه‌های گرد (rx/ry) بیضی و نامتقارن دیده شوند. */
+(function () {
+	function syncRing( svg ) {
+		var rect = svg.getBoundingClientRect();
+		var w = Math.round( rect.width );
+		var h = Math.round( rect.height );
+		if ( ! w || ! h ) {
+			return;
+		}
+		var rad = h / 2;
+
+		svg.setAttribute( 'viewBox', '0 0 ' + w + ' ' + h );
+
+		var grad = svg.querySelector( 'linearGradient' );
+		if ( grad ) {
+			grad.setAttribute( 'x1', 0 );
+			grad.setAttribute( 'y1', h / 2 );
+			grad.setAttribute( 'x2', w );
+			grad.setAttribute( 'y2', h / 2 );
+			var anim = grad.querySelector( 'animateTransform' );
+			if ( anim ) {
+				anim.setAttribute( 'from', '0 ' + ( w / 2 ) + ' ' + ( h / 2 ) );
+				anim.setAttribute( 'to', '360 ' + ( w / 2 ) + ' ' + ( h / 2 ) );
+			}
+		}
+
+		svg.querySelectorAll( 'rect' ).forEach( function ( rc ) {
+			if ( rc.getAttribute( 'fill' ) === '#000' ) {
+				// مستطیل داخلی ماسک (سوراخ وسط حلقه)
+				rc.setAttribute( 'x', 3 );
+				rc.setAttribute( 'y', 3 );
+				rc.setAttribute( 'width', w - 6 );
+				rc.setAttribute( 'height', h - 6 );
+				rc.setAttribute( 'rx', rad - 3 );
+				rc.setAttribute( 'ry', rad - 3 );
+			} else {
+				rc.setAttribute( 'x', 0 );
+				rc.setAttribute( 'y', 0 );
+				rc.setAttribute( 'width', w );
+				rc.setAttribute( 'height', h );
+				rc.setAttribute( 'rx', rad );
+				rc.setAttribute( 'ry', rad );
+			}
+		} );
+	}
+
+	function syncAllRings() {
+		document.querySelectorAll( '.ptik-gradient-ring' ).forEach( syncRing );
+	}
+
+	if ( document.readyState === 'loading' ) {
+		document.addEventListener( 'DOMContentLoaded', syncAllRings );
+	} else {
+		syncAllRings();
+	}
+	window.addEventListener( 'load', syncAllRings );
+
+	var ringResizeTimer;
+	window.addEventListener( 'resize', function () {
+		clearTimeout( ringResizeTimer );
+		ringResizeTimer = setTimeout( syncAllRings, 150 );
+	} );
+})();

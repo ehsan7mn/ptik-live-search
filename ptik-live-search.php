@@ -3,7 +3,7 @@
  * Plugin Name: جستجوی زنده
  * Plugin URI: https://persiantik.net
  * Description: جستجوی زنده (AJAX) بین نوشته‌ها، برگه‌ها، محصولات و تاکسونومی‌های سایت با نمایش نتایج گروه‌بندی‌شده بر اساس نوع محتوا. با شورتکد [ptik_search] در هرجای سایت قابل استفاده است.
- * Version: 1.2.8
+ * Version: 1.4.0
  * Author: امیراحسان مهدیزاده
  * Author URI: https://persiantik.net
  * Text Domain: ptik-live-search
@@ -156,8 +156,8 @@ function ptik_render_settings_page() {
 
 add_action( 'wp_enqueue_scripts', 'ptik_register_assets' );
 function ptik_register_assets() {
-	wp_enqueue_style( 'ptik-search-css', PTIK_PLUGIN_URL . 'assets/ptik-search.css', array(), '1.2.8' );
-	wp_enqueue_script( 'ptik-search-js', PTIK_PLUGIN_URL . 'assets/ptik-search.js', array(), '1.2.8', true );
+	wp_enqueue_style( 'ptik-search-css', PTIK_PLUGIN_URL . 'assets/ptik-search.css', array(), '1.4.0' );
+	wp_enqueue_script( 'ptik-search-js', PTIK_PLUGIN_URL . 'assets/ptik-search.js', array(), '1.4.0', true );
 	wp_localize_script(
 		'ptik-search-js',
 		'ptikSearchAjax',
@@ -226,7 +226,7 @@ function ptik_search_func( $atts ) {
 
 		case 'glass1':
 			$html .= '<input type="text" name="s" placeholder="' . $input_attr_placeholder . '" class="input_search" autocomplete="off">';
-			$html .= '<svg class="ptik-eyes" width="34" height="18" viewBox="0 0 44 30" aria-hidden="true">';
+			$html .= '<svg class="ptik-eyes" width="42" height="22" viewBox="0 0 44 30" aria-hidden="true">';
 			$html .= '<ellipse cx="12" cy="15" rx="8" ry="11" fill="none" stroke="currentColor" stroke-width="1.5"/>';
 			$html .= '<ellipse cx="32" cy="15" rx="8" ry="11" fill="none" stroke="currentColor" stroke-width="1.5"/>';
 			$html .= '<circle class="ptik-pupil" cx="12" cy="15" r="4.3" fill="currentColor"/>';
@@ -262,7 +262,7 @@ function ptik_search_func( $atts ) {
 
 		case 'minoru':
 			$html .= '<input type="text" name="s" placeholder="' . $input_attr_placeholder . '" class="input_search ptik-input--minoru" id="' . esc_attr( $form_id ) . '-field">';
-			$html .= '<label class="ptik-label--minoru" for="' . esc_attr( $form_id ) . '-field"><span class="ptik-label-content--minoru">جستجو</span></label>';
+			$html .= '<label class="ptik-label--minoru" for="' . esc_attr( $form_id ) . '-field"><span class="ptik-minoru-icon">' . $magnifier . '</span></label>';
 			break;
 
 		case 'madoka':
